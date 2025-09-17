@@ -1,0 +1,397 @@
+&FORCE_EVAL
+  METHOD         Quickstep
+  STRESS_TENSOR  ANALYTICAL
+!  &PRINT
+!    &STRESS_TENSOR
+!   &END STRESS_TENSOR
+!  &END PRINT
+  &DFT
+	    BASIS_SET_FILE_NAME /usr/local/cp2k-6.1/data/BASIS_MOLOPT
+	    POTENTIAL_FILE_NAME /usr/local/cp2k-6.1/data/GTH_POTENTIALS
+	    BASIS_SET_FILE_NAME /usr/local/cp2k-6.1/data/BASIS_ADMM_MOLOPT
+	    BASIS_SET_FILE_NAME /usr/local/cp2k-6.1/data/BASIS_ADMM
+            BASIS_SET_FILE_NAME /usr/local/cp2k-6.1/data/BASIS_RI_cc-TZ
+	    WFN_RESTART_FILE_NAME /home/fambrosi/hydroxyl/test-koopman/radical/gga/n1/el.pbe0/water+I-.dyn-RESTART.wfn 
+    CHARGE -1
+!     UKS
+    &MGRID
+      CUTOFF       800
+      REL_CUTOFF    50
+    &END MGRID
+    &QS
+     METHOD GPW
+     EPS_DEFAULT 1.0E-12
+    &END QS
+    &SCF
+      SCF_GUESS  RESTART
+      MAX_SCF    50
+      &OT
+        MINIMIZER       CG
+        PRECONDITIONER  FULL_SINGLE_INVERSE
+      &END
+      &OUTER_SCF
+        MAX_SCF  50
+      &END
+!      &PRINT
+!        &RESTART OFF
+!        &END
+!      &END
+    &END SCF
+    &AUXILIARY_DENSITY_MATRIX_METHOD
+        METHOD BASIS_PROJECTION
+        ADMM_PURIFICATION_METHOD MO_DIAG
+     &END AUXILIARY_DENSITY_MATRIX_METHOD
+   &XC
+    &XC_FUNCTIONAL
+   &PBE
+   SCALE_X 0.53
+   SCALE_C 1.0
+   &END PBE
+   &PBE_HOLE_T_C_LR
+    CUTOFF_RADIUS 6.0
+    SCALE_X 0.47
+    &END PBE_HOLE_T_C_LR
+    &END XC_FUNCTIONAL
+   &HF
+    &SCREENING
+    EPS_SCHWARZ 1.0E-6
+    SCREEN_ON_INITIAL_P FALSE
+    &END SCREENING
+    &INTERACTION_POTENTIAL
+     POTENTIAL_TYPE TRUNCATED
+    CUTOFF_RADIUS 6.0
+    T_C_G_DATA  /usr/local/cp2k-6.1/data/t_c_g.dat
+    &END INTERACTION_POTENTIAL
+     &MEMORY
+     MAX_MEMORY 10000
+    EPS_STORAGE_SCALING 0.1
+    &END MEMORY
+    FRACTION 0.47
+    &END HF
+      ! non-local vdW part
+      &vdW_POTENTIAL
+         DISPERSION_FUNCTIONAL NON_LOCAL
+         &NON_LOCAL
+           TYPE RVV10
+           PARAMETERS  5.3  0.0093
+           KERNEL_FILE_NAME   /usr/local/cp2k-6.1/data/rVV10_kernel_table.dat
+           CUTOFF      400
+         &END NON_LOCAL
+      &END vdW_POTENTIAL
+    &END XC
+    &PRINT
+     &MO_CUBES
+      NHOMO 1
+      NLUMO 1
+      WRITE_CUBE F
+!      &EACH  
+!       MD 50
+!      &END EACH
+      &END MO_CUBES
+!   &E_DENSITY_CUBE
+!   &END 
+   &END PRINT
+  &END DFT
+  &SUBSYS
+    &CELL
+      ABC [angstrom] 12.42 12.42 12.42	
+    &END CELL
+    &COORD
+ O         3.580488       -5.114332        7.490036
+ O        -4.736209        5.618473        5.628922
+ O         1.365749        2.869694        7.029989
+ O        -4.558362       -0.280970       -7.636933
+ O        -4.098710        3.309547        6.989748
+ O         4.210495        1.437666        4.522861
+ O         2.704257       -4.939726        3.780899
+ O        -4.063142       -4.106137       -0.442600
+ O         5.118658       -1.108064        1.632740
+ O         0.094413        4.882066        8.586640
+ O         2.071154       -5.085765        1.203868
+ O         2.895122       -0.751657        3.464947
+ O         0.380496       -5.032745       -1.546088
+ O         3.090673        5.216924       -0.634336
+ O         2.333083       -2.816106        5.233987
+ O        -0.649292       -1.266050        8.110259
+ O         0.944888       -4.950137        7.188446
+ O        -2.765807        2.324467        2.009698
+ O         0.030792       -1.568165       -6.830249
+ O        -3.057788       -1.772439       -0.992162
+ O        -3.680383        5.807722       -1.045357
+ O         3.532914        3.429778        2.690581
+ O         3.494517        2.120032       -3.680446
+ O        -7.460297        6.106942       -2.641436
+ O         6.681291        0.328482       -1.768917
+ O         3.951320        0.327152       -0.376882
+ O        -6.859807       -4.014287       -1.343721
+ O        -7.153951        6.713511        3.103271
+ O         6.046820        1.646605       -4.281791
+ O        -0.838076       -3.817610       -3.761708
+ O         2.769682        2.568026       -1.053654
+ O        -1.110754       -6.855932        2.639491
+ O         0.062831       -6.567640        4.958307
+ O        -0.974182       -7.295081       -1.286217
+ O        -2.840137       -0.290549        1.283535
+ O         1.870332       -1.731828       -1.821870
+ O        -0.541534        3.325890        0.939833
+ O        -3.857911       -6.733665        2.967154
+ O         5.180132        5.942221        5.619540
+ O        -5.833888       -0.722845       -5.363299
+ O        -0.146881        1.358947        5.306284
+ O        -4.848602       -1.746548        2.413251
+ O         1.454441       -0.740568        1.124018
+ O        -7.078880        4.564632        1.331778
+ O        -1.631238        3.009372       -4.737751
+ O        -4.252753        2.595584       -1.412469
+ O         3.649889       -2.892283        0.171544
+ O        -0.778925        0.550840       -2.338597
+ O        -0.386527        8.238604        1.881067
+ O         3.990310       -2.312221        7.239974
+ O        -5.141534       -7.963679       -3.019120
+ O        -3.140325       -0.170627       -3.419220
+ O         0.627479        1.287998       -0.280966
+ O        -5.796994       -2.122650       -3.265947
+ O        -2.754854        1.902174        4.655715
+ O        -3.919378       -4.181812       -6.399469
+ O        -1.000327       -1.858623        2.787375
+ O         0.778690        2.886179        3.391707
+ O         2.579913       -0.487602       -3.972606
+ O        -4.281494        4.172387        1.004098
+ O        -0.412424       -2.468222       -0.352184
+ O         2.848740        4.777314        5.082379
+ O        -3.393302       -3.775256        8.796072
+ O        -4.991963       -4.519464        1.944012
+ H         3.738459       -4.190530        7.720818
+ H         2.629547       -5.132419        7.411962
+ H        -4.282825        4.924415        6.062644
+ H        -5.668816        5.545096        5.885364
+ H         0.880582        3.471580        7.585461
+ H         0.750802        2.301750        6.521352
+ H        -3.974451        0.492600       -7.623601
+ H        -4.739016       -0.645471       -8.525526
+ H        -4.755016        2.665483        7.233255
+ H        -3.192656        3.185859        7.346766
+ H         5.125180        1.146299        4.467521
+ H         3.657562        0.764381        4.122781
+ H         2.222838       -4.939380        2.907057
+ H         2.346024       -5.620992        4.326933
+ H        -3.371942       -3.474093       -0.717971
+ H        -3.828146       -5.027420       -0.664534
+ H         6.069535       -1.322065        1.900693
+ H         5.185506       -0.340753        1.059365
+ H         0.228708        5.708924        8.075955
+ H        -0.272926        5.199402        9.414864
+ H         2.258012       -5.943722        0.856470
+ H         2.774687       -4.482505        0.760176
+ H         2.900525       -1.378186        4.212126
+ H         3.721678       -0.940498        3.020172
+ H        -0.092689       -5.868541       -1.310003
+ H         1.298775       -5.163141       -1.277466
+ H         2.796956        4.300256       -0.857118
+ H         3.559190        5.488777       -1.423657
+ H         2.724851       -2.821161        6.146414
+ H         2.407371       -3.682397        4.803370
+ H        -0.597538       -2.211148        8.425360
+ H        -0.537546       -1.226891        7.143003
+ H         0.668491       -5.340984        6.322700
+ H         0.258473       -4.414249        7.547687
+ H        -3.505187        2.909794        1.808305
+ H        -2.802093        2.174040        2.987594
+ H         0.767604       -2.213971       -6.827021
+ H        -0.415595       -1.723017       -7.684021
+ H        -2.963296       -1.145697       -1.716818
+ H        -3.123825       -1.242282       -0.117968
+ H        -4.243282        5.412081       -1.781844
+ H        -3.884494        5.235446       -0.246098
+ H         3.926106        2.762666        3.316782
+ H         4.218922        3.852792        2.168004
+ H         2.692793        2.363742       -4.254229
+ H         3.509821        1.147606       -3.814072
+ H        -6.704325        5.516320       -2.898600
+ H        -7.968206        6.337152       -3.460689
+ H         7.011789       -0.465320       -2.161910
+ H         5.839137        0.044013       -1.469415
+ H         3.190603       -0.262128       -0.330937
+ H         3.627521        1.246499       -0.406489
+ H        -7.184270       -4.858586       -1.648977
+ H        -5.908767       -3.986162       -1.104738
+ H        -6.948842        6.431433        4.010677
+ H        -8.075271        7.034930        3.227366
+ H         6.156895        1.209194       -3.487381
+ H         5.223505        2.153681       -4.177330
+ H        -1.787823       -3.784719       -3.577749
+ H        -0.510218       -4.375926       -2.967118
+ H         3.019311        2.560086       -1.955130
+ H         1.993520        2.005333       -0.931890
+ H        -2.099171       -6.906727        2.917721
+ H        -0.919450       -7.576279        2.051505
+ H        -0.272187       -6.491117        4.089854
+ H         0.754944       -7.231377        4.807666
+ H        -0.769424       -7.863915       -0.489339
+ H        -1.980950       -7.141954       -1.253285
+ H        -2.854800        0.675292        1.490346
+ H        -1.970904       -0.616319        1.629016
+ H         2.347775       -2.211622       -1.134482
+ H         0.931382       -1.935881       -1.594713
+ H        -1.399415        2.952306        1.198045
+ H         0.019717        2.552261        0.531912
+ H        -4.180804       -6.803288        3.878733
+ H        -4.094264       -5.836083        2.660605
+ H         4.349806        5.411979        5.398444
+ H         4.690216        6.606897        6.173324
+ H        -5.238416       -0.639321       -6.142385
+ H        -6.290516        0.099797       -5.169081
+ H         0.183185        1.673605        4.422214
+ H         0.047584        0.431645        5.375988
+ H        -4.731977       -2.705139        2.583609
+ H        -4.070217       -1.369949        1.999729
+ H         1.765283       -0.747112        2.044246
+ H         0.880171       -1.481696        0.828400
+ H        -7.178931        5.370812        1.912996
+ H        -7.711564        4.669654        0.593199
+ H        -0.915449        3.649954       -4.483367
+ H        -1.377234        2.140913       -4.502326
+ H        -3.839461        2.949056       -0.612807
+ H        -4.654149        1.665557       -1.284625
+ H         4.408105       -3.013484       -0.424669
+ H         4.003385       -2.252128        0.808819
+ H        -1.739393        0.614553       -2.301248
+ H        -0.484825       -0.099420       -2.964642
+ H        -0.881666        7.395055        2.055387
+ H         0.497380        7.961056        1.831581
+ H         3.563061       -1.522202        7.666050
+ H         4.823558       -2.031347        6.790024
+ H        -4.740758       -8.338362       -3.837771
+ H        -5.034263       -8.648357       -2.311339
+ H        -2.521139       -0.657045       -4.011305
+ H        -3.946529       -0.264421       -3.981085
+ H         0.085377        0.866723       -0.986777
+ H         0.829003        0.540420        0.357769
+ H        -6.417064       -2.879743       -3.163084
+ H        -5.889472       -1.772433       -4.200441
+ H        -3.128423        2.423679        5.380020
+ H        -1.837985        1.630910        4.903455
+ H        -4.527526       -3.668044       -6.926021
+ H        -4.103831       -5.090384       -6.618909
+ H        -0.960075       -2.785817        2.272104
+ H         0.378022        2.979525        2.494435
+ H         1.739147        2.882735        3.208343
+ H         1.850080       -0.415910       -4.625160
+ H         2.332217       -1.099753       -3.243557
+ H        -5.247615        4.048784        0.869206
+ H        -4.139685        4.763880        1.869353
+ H        -0.383278       -3.420881       -0.524162
+ H        -1.278826       -2.225788       -0.606168
+ H         2.560997        4.126679        5.747872
+ H         2.981775        4.256036        4.276767
+ H        -4.052535       -3.247227        9.204910
+ H        -3.748479       -3.789723        7.931353
+ H        -4.845760       -4.352382        0.958008
+ H        -5.913933       -4.738339        1.992741
+    &END COORD
+!    &TOPOLOGY
+!      COORD_FILE_NAME   ./pos74.xyz
+!      COORD_FILE_FORMAT xyz
+!    &END TOPOLOGY
+!    &KIND Pb
+!      BASIS_SET DZVP-MOLOPT-SR-GTH-q4
+!      POTENTIAL GTH-PBE-q4
+!    &END KIND
+!    &KIND I
+!      BASIS_SET DZVP-MOLOPT-SR-GTH-q7
+!      POTENTIAL GTH-PBE-q7
+!    &END KIND
+    &KIND O
+!      BASIS_SET DZVP-MOLOPT-SR-GTH-q6
+     BASIS_SET AUX_FIT cFIT3
+      BASIS_SET cc-TZ
+      POTENTIAL GTH-PBE-q6
+    &END KIND
+    &KIND H
+!      BASIS_SET DZVP-MOLOPT-SR-GTH-q1
+      BASIS_SET AUX_FIT cFIT3
+     BASIS_SET cc-TZ
+      POTENTIAL GTH-PBE-q1
+    &END KIND
+    &KIND C
+     BASIS_SET DZVP-MOLOPT-SR-GTH-q4
+!      BASIS_SET cc-TZ
+      POTENTIAL GTH-PBE-q4
+      BASIS_SET AUX_FIT cFIT3 !SZV-MOLOPT-SR-GTH
+    &END KIND
+    &KIND N
+!      BASIS_SET cc-TZ
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q5
+      POTENTIAL GTH-PBE-q5
+      BASIS_SET AUX_FIT cFIT3 !SZV-MOLOPT-SR-GTH
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL
+&MOTION
+ &MD
+  STEPS	50000000
+  TIMESTEP 0.48
+  TEMPERATURE 350
+  ENSEMBLE NVT
+  &THERMOSTAT
+    REGION MASSIVE
+    TYPE NOSE
+    &NOSE
+      TIMECON 16.68
+    &END NOSE
+  &END THERMOSTAT
+  &BAROSTAT
+    PRESSURE 0.0
+    TIMECON 300
+  &END BAROSTAT
+ &END MD
+  &PRINT
+   &TRAJECTORY
+    &EACH
+     MD 1
+    &END EACH
+   &END TRAJECTORY
+   &CELL
+    &EACH
+     MD 1
+    &END EACH
+   &END CELL
+   &VELOCITIES OFF
+   &END VELOCITIES
+   &FORCES OFF
+   &END FORCES
+   &RESTART_HISTORY
+    &EACH
+     MD 500
+    &END EACH
+   &END RESTART_HISTORY
+   &RESTART
+    BACKUP_COPIES 3
+    &EACH
+     MD 1
+    &END EACH
+   &END RESTART
+  &END PRINT
+&END MOTION
+! &CONSTRAINT
+!  &FIXED_ATOMS
+!   LIST 1..382
+!  &END FIXED_ATOMS
+! &END CONSTRAINT
+!&GEO_OPT
+!  OPTIMIZER BFGS
+!    &BFGS
+!     TRUST_RADIUS 0.1
+!    &END
+!&END GEO_OPT
+&GLOBAL
+  PROJECT      water+I-.dyn
+  RUN_TYPE     WFN_OPT
+  PRINT_LEVEL  LOW
+  EXTENDED_FFT_LENGTHS
+!  WALLTIME     23:00:00
+&END GLOBAL
+!&EXT_RESTART
+!RESTART_FILE_NAME /home/fambrosi/hydroxyl/water+I-.dyn-1.restart 
+!&END EXT_RESTART
+
