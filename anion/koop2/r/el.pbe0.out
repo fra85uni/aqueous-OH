@@ -1,0 +1,749 @@
+ DBCSR| Multiplication driver                                               BLAS
+ DBCSR| Multrec recursion limit                                              512
+ DBCSR| Multiplication stack size                                           1000
+ DBCSR| Maximum elements for images                                    UNLIMITED
+ DBCSR| Multiplicative factor virtual images                                   1
+ DBCSR| Multiplication size stacks                                             3
+ DBCSR| Number of 3D layers                                               SINGLE
+ DBCSR| Use MPI memory allocation                                              T
+ DBCSR| Use RMA algorithm                                                      F
+ DBCSR| Use Communication thread                                               T
+ DBCSR| Communication thread load                                             87
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-03-16 17:01:25.812
+ ***** ** ***  *** **   PROGRAM STARTED ON                                  tc22
+ **    ****   ******    PROGRAM STARTED BY                              fambrosi
+ ***** **    ** ** **   PROGRAM PROCESS ID                                 14362
+  **** **  *******  **  PROGRAM STARTED IN          /scratch/fambrosi.55155.tccw
+
+ CP2K| version string:                                          CP2K version 6.1
+ CP2K| source code revision number:                                    svn:18464
+ CP2K| cp2kflags: libint fftw3 libxc parallel mpi3 scalapack has_no_shared_glibc
+ CP2K|             libderiv_max_am1=5 libint_max_am=6 max_contr=4 mkl
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                         Mon Jun 25 12:26:44 CEST 2018
+ CP2K| Program compiled on                                                  tccw
+ CP2K| Program compiled for                     Linux-x86-64-intel.MPI-OPENMP.O2
+ CP2K| Data directory path                           /home/edoardo/cp2k-6.1/data
+ CP2K| Input file name        /home/fambrosi/hydroxyl/test-koopman/anion/koop2/r
+ 
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name               /usr/local/cp2k-6.1/data/BASIS_MOLOPT
+ GLOBAL| Potential file name             /usr/local/cp2k-6.1/data/GTH_POTENTIALS
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                               water+I-.dyn
+ GLOBAL| Preferred FFT library                                             FFTW3
+ GLOBAL| Preferred diagonalization lib.                                       SL
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  T
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| Total number of message passing processes                            32
+ GLOBAL| Number of threads for this process                                    1
+ GLOBAL| This output is from process                                           0
+ GLOBAL| CPU model name :  Intel(R) Xeon(R) CPU E5-2683 v4 @ 2.10GHz
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal            264564496     264564496     264564496     264564496
+ MEMORY| MemFree              73694744      73694744      73694744      73694744
+ MEMORY| Buffers                185812        185812        185812        185812
+ MEMORY| Cached              182005312     182005312     182005312     182005312
+ MEMORY| Slab                  5770656       5770656       5770656       5770656
+ MEMORY| SReclaimable          5696712       5696712       5696712       5696712
+ MEMORY| MemLikelyFree       261582580     261582580     261582580     261582580
+
+ 
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000 - 2018)           **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   2
+                             - Atoms:                                        191
+                             - Shell sets:                                  1146
+                             - Shells:                                      1338
+                             - Primitive Cartesian functions:               1528
+                             - Cartesian basis functions:                   4081
+                             - Spherical basis functions:                   3634
+
+  Maximum angular momentum of- Orbital basis functions:                        3
+                             - Local part of the GTH pseudopotential:          2
+                             - Non-local part of the GTH pseudopotential:      0
+
+  AUX_FIT ADMM-Basis: 
+  Total number of            - Shell sets:                                   510
+                             - Shells:                                       510
+                             - Primitive Cartesian functions:                765
+                             - Cartesian basis functions:                    766
+                             - Spherical basis functions:                    766
+                               Maximum angular momentum                        1
+
+
+ SCF PARAMETERS         Density guess:                                   RESTART
+                        --------------------------------------------------------
+                        max_scf:                                              50
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-05
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                                 0.00
+                        --------------------------------------------------------
+                        Outer loop SCF in use 
+                        No variables optimised in outer loop
+                        eps_scf                                         1.00E-05
+                        max_scf                                               50
+                        No outer loop optimization
+                        step_size                                       5.00E-01
+
+ Spin 1
+
+ Number of electrons:                                                        256
+ Number of occupied orbitals:                                                256
+ Number of molecular orbitals:                                               256
+
+ Spin 2
+
+ Number of electrons:                                                        255
+ Number of occupied orbitals:                                                255
+ Number of molecular orbitals:                                               255
+
+ Number of orbital functions:                                               3634
+ Number of independent orbital functions:                                   3634
+
+ Extrapolation method: initial_guess
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  ----------------------------------- OT ---------------------------------------
+  Minimizer      : CG                  : conjugate gradient
+  Preconditioner : FULL_SINGLE_INVERSE : inversion of 
+                                         H + eS - 2*(Sc)(c^T*H*c+const)(Sc)^T
+  Precond_solver : DEFAULT
+  Line search    : 2PNT                : 2 energies, one gradient
+  stepsize       :    0.08000000                  energy_gap     :    0.08000000
+  eps_taylor     :   0.10000E-15                  max_taylor     :             4
+  ----------------------------------- OT ---------------------------------------
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+
+ *** WARNING in hfx_energy_potential.F:605 :: The Kohn Sham matrix is not  ***
+ *** 100% occupied. This may result in incorrect Hartree-Fock results. Try ***
+ *** to decrease EPS_PGF_ORB and EPS_FILTER_MATRIX in the QS section. For  ***
+ *** more information see FAQ: https://www.cp2k.org/faq:hfx_eps_warning    ***
+
+     1 OT CG       0.80E-01   84.2     0.00080969     -1099.1189907235 -1.10E+03
+     2 OT LS       0.32E+00   15.4                    -1099.2063647459
+     3 OT CG       0.32E+00   24.0     0.00033841     -1099.3474378297 -2.28E-01
+     4 OT LS       0.18E+00   15.2                    -1099.3543818186
+     5 OT CG       0.18E+00   23.8     0.00032861     -1099.3665114572 -1.91E-02
+     6 OT LS       0.15E+00   15.1                    -1099.3814495943
+     7 OT CG       0.15E+00   24.0     0.00030749     -1099.3819018401 -1.54E-02
+     8 OT LS       0.18E+00   15.2                    -1099.3974886911
+     9 OT CG       0.18E+00   25.2     0.00019759     -1099.3978310775 -1.59E-02
+    10 OT LS       0.20E+00   15.1                    -1099.4049052522
+    11 OT CG       0.20E+00   24.0     0.00015875     -1099.4049124875 -7.08E-03
+    12 OT LS       0.14E+00   15.3                    -1099.4074483908
+    13 OT CG       0.14E+00   23.6     0.00011483     -1099.4080512296 -3.14E-03
+    14 OT LS       0.18E+00   15.2                    -1099.4101241790
+    15 OT CG       0.18E+00   23.6     0.00006206     -1099.4102331126 -2.18E-03
+    16 OT LS       0.16E+00   15.3                    -1099.4107925294
+    17 OT CG       0.16E+00   23.6     0.00004087     -1099.4108018851 -5.69E-04
+    18 OT LS       0.12E+00   15.2                    -1099.4109617569
+    19 OT CG       0.12E+00   23.7     0.00001902     -1099.4109839031 -1.82E-04
+    20 OT LS       0.20E+00   15.2                    -1099.4110395997
+    21 OT CG       0.20E+00   23.9     0.00001196     -1099.4110512032 -6.73E-05
+    22 OT LS       0.13E+00   15.1                    -1099.4110641103
+    23 OT CG       0.13E+00   24.2     0.00000800     -1099.4110687880 -1.76E-05
+
+  *** SCF run converged in    23 steps ***
+
+
+  Electronic density on regular grids:       -510.9999999999        0.0000000001
+  Core density on regular grids:              510.9999999998       -0.0000000002
+  Total charge density on r-space grids:       -0.0000000001
+  Total charge density g-space grids:          -0.0000000001
+
+  Overlap energy of the core charge distribution:               0.00000228609416
+  Self energy of the core charge distribution:              -2836.80744583234036
+  Core Hamiltonian energy:                                    822.54393770415777
+  Hartree energy:                                            1182.47271881603183
+  Exchange-correlation energy:                               -152.30724668462665
+  Hartree-Fock Exchange energy:                              -117.46218910701504
+  Dispersion energy:                                            2.14915402972218
+
+  Total energy:                                             -1099.41106878797632
+
+  outer SCF iter =    1 RMS gradient =   0.80E-05 energy =      -1099.4110687880
+  outer SCF loop converged in   1 iterations or   23 steps
+
+
+  Integrated absolute spin density  :                               1.1608971774
+  Ideal and single determinant S**2 :                    0.750000       0.757264
+  
+  Eigenvalues of the occupied subspace spin            1
+ ---------------------------------------------
+      -1.17945039     -1.06818472     -1.06403478     -1.05812942
+      -1.05432893     -1.04775686     -1.04535818     -1.04485198
+      -1.04354982     -1.04130357     -1.04088550     -1.03677249
+      -1.03555704     -1.03447506     -1.03126177     -1.02822427
+      -1.02685332     -1.02610534     -1.02432866     -1.02327667
+      -1.02213832     -1.02163195     -1.02088332     -1.01957646
+      -1.01899599     -1.01737179     -1.01684062     -1.01597314
+      -1.01562483     -1.01505242     -1.01087587     -1.00956647
+      -1.00832686     -1.00772424     -1.00600084     -1.00570652
+      -1.00470254     -1.00310831     -0.99986872     -0.99889476
+      -0.99861066     -0.99717218     -0.99654774     -0.99470411
+      -0.99372267     -0.99245078     -0.99161261     -0.99146128
+      -0.99042185     -0.98981995     -0.98796532     -0.98505101
+      -0.98466465     -0.98136210     -0.97744992     -0.97682867
+      -0.97486586     -0.97310819     -0.97101915     -0.96985252
+      -0.96607652     -0.96253494     -0.95769718     -0.95441269
+      -0.57404417     -0.56304015     -0.53100843     -0.51583693
+      -0.51326962     -0.51051313     -0.50892142     -0.50677927
+      -0.50586576     -0.50514551     -0.50315264     -0.50303022
+      -0.50098060     -0.49940251     -0.49820886     -0.49666140
+      -0.49514478     -0.49391895     -0.49291478     -0.48954875
+      -0.48784285     -0.48709763     -0.48649278     -0.48503038
+      -0.48437249     -0.48389505     -0.48235065     -0.48187888
+      -0.48095995     -0.48005932     -0.47872002     -0.47787716
+      -0.47660363     -0.47596123     -0.47422878     -0.47196668
+      -0.47166713     -0.47073918     -0.46942643     -0.46830584
+      -0.46809050     -0.46698361     -0.46538448     -0.46469873
+      -0.46374631     -0.46266701     -0.46089129     -0.45841734
+      -0.45701073     -0.45543535     -0.45442717     -0.45359874
+      -0.45300443     -0.45252983     -0.45206490     -0.44897723
+      -0.44724403     -0.44549589     -0.44462482     -0.44279174
+      -0.44146088     -0.44024158     -0.43708323     -0.43142620
+      -0.42895406     -0.41976143     -0.41523697     -0.40655437
+      -0.40454666     -0.39744050     -0.39458085     -0.39111208
+      -0.38866267     -0.38516196     -0.38502315     -0.38424431
+      -0.38164390     -0.37952005     -0.37861948     -0.37733929
+      -0.37615139     -0.37307364     -0.37225030     -0.37104840
+      -0.36820586     -0.36695448     -0.36521530     -0.36301747
+      -0.35981578     -0.35836995     -0.35621036     -0.35563746
+      -0.35371599     -0.35257916     -0.35073478     -0.34811735
+      -0.34613336     -0.34521692     -0.34419437     -0.34126547
+      -0.34088823     -0.33968723     -0.33881791     -0.33620325
+      -0.33491094     -0.33237889     -0.33187800     -0.33060728
+      -0.33003703     -0.32916838     -0.32771019     -0.32426026
+      -0.32403335     -0.32238203     -0.32061847     -0.31947027
+      -0.31739629     -0.31584768     -0.31422746     -0.31325067
+      -0.31245495     -0.31061509     -0.30768400     -0.30628306
+      -0.30497147     -0.30424954     -0.30244122     -0.30121556
+      -0.29922915     -0.29765281     -0.29719134     -0.29463675
+      -0.29269128     -0.29070321     -0.29027369     -0.28791667
+      -0.28597871     -0.28474990     -0.28402872     -0.28252629
+      -0.28058832     -0.28006125     -0.27940223     -0.27868730
+      -0.27829137     -0.27747509     -0.27679119     -0.27556651
+      -0.27470007     -0.27414074     -0.27341671     -0.27259110
+      -0.27250442     -0.27164093     -0.27161961     -0.27117915
+      -0.26953851     -0.26811350     -0.26743904     -0.26660564
+      -0.26633475     -0.26441020     -0.26383730     -0.26209889
+      -0.26166247     -0.26138660     -0.26008149     -0.25753923
+      -0.25715651     -0.25544681     -0.25476458     -0.25453502
+      -0.25384954     -0.25143628     -0.25096933     -0.25013652
+      -0.24995904     -0.24864302     -0.24784640     -0.24764877
+      -0.24614139     -0.24440231     -0.24316382     -0.24281885
+      -0.23971496     -0.23869371     -0.23823800     -0.23565284
+      -0.23248525     -0.22701742     -0.22559558     -0.21743159
+ Fermi Energy [eV] :   -5.916614
+  
+  Eigenvalues of the occupied subspace spin            2
+ ---------------------------------------------
+      -1.08858555     -1.06816583     -1.05983571     -1.05781715
+      -1.05003394     -1.04530434     -1.04479436     -1.04375769
+      -1.04135453     -1.04086809     -1.03794272     -1.03652645
+      -1.03505724     -1.03446337     -1.03102632     -1.02822384
+      -1.02685018     -1.02597625     -1.02431974     -1.02327146
+      -1.02211182     -1.02162742     -1.02086199     -1.01956073
+      -1.01898742     -1.01736320     -1.01676539     -1.01564681
+      -1.01521852     -1.01504224     -1.01086709     -1.00955574
+      -1.00830560     -1.00772016     -1.00592038     -1.00570130
+      -1.00469089     -1.00310659     -0.99986448     -0.99880130
+      -0.99858931     -0.99716846     -0.99650642     -0.99458611
+      -0.99371445     -0.99244365     -0.99160853     -0.99145421
+      -0.99041332     -0.98981148     -0.98795722     -0.98504672
+      -0.98465983     -0.98136021     -0.97743858     -0.97682922
+      -0.97486535     -0.97310451     -0.97100342     -0.96984191
+      -0.96604995     -0.96250622     -0.95766301     -0.95438765
+      -0.54394939     -0.53049355     -0.52363244     -0.51327240
+      -0.51057198     -0.50936774     -0.50657118     -0.50590633
+      -0.50508269     -0.50340024     -0.50297813     -0.50193185
+      -0.49980887     -0.49852430     -0.49669844     -0.49624167
+      -0.49479497     -0.49377956     -0.48967316     -0.48806658
+      -0.48775673     -0.48691398     -0.48534727     -0.48459446
+      -0.48388074     -0.48232071     -0.48207830     -0.48114581
+      -0.48040333     -0.47885030     -0.47829570     -0.47650944
+      -0.47559284     -0.47440049     -0.47405451     -0.47183838
+      -0.47120000     -0.46939255     -0.46861299     -0.46822803
+      -0.46695900     -0.46522083     -0.46471486     -0.46379055
+      -0.46266053     -0.46093190     -0.45842441     -0.45700366
+      -0.45544617     -0.45442845     -0.45360277     -0.45299731
+      -0.45252450     -0.45205808     -0.44898631     -0.44723685
+      -0.44548859     -0.44460062     -0.44148240     -0.44042466
+      -0.43715474     -0.43319057     -0.43142577     -0.42894251
+      -0.41971675     -0.41457873     -0.40598562     -0.40428579
+      -0.39810665     -0.39358173     -0.39123083     -0.38859779
+      -0.38484250     -0.38442802     -0.38390110     -0.38160100
+      -0.37949197     -0.37756676     -0.37703786     -0.37472916
+      -0.37309433     -0.37204465     -0.37020195     -0.36813389
+      -0.36625294     -0.36388275     -0.36267037     -0.35970024
+      -0.35799953     -0.35578625     -0.35561032     -0.35340784
+      -0.35077269     -0.34856003     -0.34718581     -0.34528507
+      -0.34419475     -0.34211443     -0.34096891     -0.34075514
+      -0.33954752     -0.33875073     -0.33555370     -0.33398770
+      -0.33207149     -0.33155788     -0.33038048     -0.33001884
+      -0.32911727     -0.32767604     -0.32406019     -0.32399076
+      -0.32186333     -0.32055056     -0.31943652     -0.31730108
+      -0.31559460     -0.31421205     -0.31243586     -0.31128280
+      -0.31037691     -0.30694419     -0.30502947     -0.30471614
+      -0.30419886     -0.30228845     -0.30110554     -0.29923562
+      -0.29746680     -0.29718218     -0.29458353     -0.29266242
+      -0.29062671     -0.29023393     -0.28782273     -0.28590415
+      -0.28471996     -0.28397263     -0.28248916     -0.28056250
+      -0.28002059     -0.27939236     -0.27867753     -0.27820126
+      -0.27739992     -0.27665524     -0.27550266     -0.27468341
+      -0.27412329     -0.27340459     -0.27255471     -0.27248101
+      -0.27162297     -0.27140944     -0.27110228     -0.26951931
+      -0.26811110     -0.26741251     -0.26658667     -0.26623128
+      -0.26438151     -0.26382840     -0.26208691     -0.26165207
+      -0.26138366     -0.26007517     -0.25752991     -0.25715134
+      -0.25543897     -0.25476301     -0.25449304     -0.25384269
+      -0.25142857     -0.25096024     -0.25012817     -0.24995469
+      -0.24864014     -0.24784872     -0.24764743     -0.24613597
+      -0.24438985     -0.24316212     -0.24275983     -0.23971255
+      -0.23869294     -0.23822724     -0.23554543     -0.23246265
+      -0.22699773     -0.22555888     -0.21738730
+ Fermi Energy [eV] :   -5.915409
+  
+  Lowest Eigenvalues of the unoccupied subspace spin            1
+ -----------------------------------------------------
+  Reached convergence in           51  iterations 
+       0.09214779
+  
+  Lowest Eigenvalues of the unoccupied subspace spin            2
+ -----------------------------------------------------
+  Reached convergence in           61  iterations 
+      -0.11517234
+  
+ HOMO - LUMO gap [eV] :    8.424083
+ HOMO - LUMO gap [eV] :    2.781410
+
+ ENERGY| Total FORCE_EVAL ( QS ) energy (a.u.):            -1099.411068787976319
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                DBCSR STATISTICS                             -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ COUNTER                                    TOTAL       BLAS       SMM       ACC
+ flops    63 x     1 x    31                 7812     100.0%      0.0%      0.0%
+ flops    64 x     1 x    31                23808     100.0%      0.0%      0.0%
+ flops    63 x     1 x    32                56448     100.0%      0.0%      0.0%
+ flops   898 x     1 x    31               111352     100.0%      0.0%      0.0%
+ flops    63 x     1 x   442               111384     100.0%      0.0%      0.0%
+ flops    65 x     1 x    33               111540     100.0%      0.0%      0.0%
+ flops     1 x     1 x   442               192712     100.0%      0.0%      0.0%
+ flops    64 x     1 x    33               329472     100.0%      0.0%      0.0%
+ flops   912 x     1 x    31               339264     100.0%      0.0%      0.0%
+ flops    65 x     1 x    32               757120     100.0%      0.0%      0.0%
+ flops    63 x     1 x   456               804384     100.0%      0.0%      0.0%
+ flops    31 x    31 x   442               849524     100.0%      0.0%      0.0%
+ flops     1 x     1 x   456              1391712     100.0%      0.0%      0.0%
+ flops    65 x     1 x   442              1493960     100.0%      0.0%      0.0%
+ flops   898 x     1 x    33              1540968     100.0%      0.0%      0.0%
+ flops    32 x    31 x   442              2630784     100.0%      0.0%      0.0%
+ flops    31 x    32 x   442              3507712     100.0%      0.0%      0.0%
+ flops    65 x    33 x   442              3792360     100.0%      0.0%      0.0%
+ flops   912 x     1 x    33              4694976     100.0%      0.0%      0.0%
+ flops    31 x    31 x   456              6135024     100.0%      0.0%      0.0%
+ flops    64 x     1 x    32              6733824     100.0%      0.0%      0.0%
+ flops    14 x    31 x    31              6834632     100.0%      0.0%      0.0%
+ flops    29 x    31 x    31              7134464     100.0%      0.0%      0.0%
+ flops    65 x     1 x   456             10788960     100.0%      0.0%      0.0%
+ flops    64 x    33 x   442             11202048     100.0%      0.0%      0.0%
+ flops    64 x     1 x   442             12220416     100.0%      0.0%      0.0%
+ flops    63 x    31 x    31             14893578     100.0%      0.0%      0.0%
+ flops    32 x    31 x   456             18998784     100.0%      0.0%      0.0%
+ flops    14 x    32 x    31             24692864     100.0%      0.0%      0.0%
+ flops    14 x    31 x    32             24692864     100.0%      0.0%      0.0%
+ flops    31 x    32 x   456             25331712     100.0%      0.0%      0.0%
+ flops    65 x    32 x   442             25742080     100.0%      0.0%      0.0%
+ flops    29 x    32 x    31             25776128     100.0%      0.0%      0.0%
+ flops    29 x    31 x    32             25776128     100.0%      0.0%      0.0%
+ flops   898 x     1 x    32             26437120     100.0%      0.0%      0.0%
+ flops    65 x    33 x   456             27387360     100.0%      0.0%      0.0%
+ flops   898 x     1 x   442             45248424     100.0%      0.0%      0.0%
+ flops    64 x    31 x    31             45389952     100.0%      0.0%      0.0%
+ flops     2 x     2 x    31             46362112     100.0%      0.0%      0.0%
+ flops   898 x    33 x   442             52392912     100.0%      0.0%      0.0%
+ flops    32 x    32 x   442             57933824     100.0%      0.0%      0.0%
+ flops   912 x     1 x    32             80547840     100.0%      0.0%      0.0%
+ flops    64 x    33 x   456             80898048     100.0%      0.0%      0.0%
+ flops    64 x     1 x   456             88252416     100.0%      0.0%      0.0%
+ flops     8 x     2 x    31             90602336     100.0%      0.0%      0.0%
+ flops     2 x     8 x    31             90670784     100.0%      0.0%      0.0%
+ flops    63 x    31 x   442            103587120     100.0%      0.0%      0.0%
+ flops    63 x    31 x    32            107618112     100.0%      0.0%      0.0%
+ flops    63 x    32 x    31            107618112     100.0%      0.0%      0.0%
+ flops   912 x     1 x   442            137861568     100.0%      0.0%      0.0%
+ flops   898 x    31 x    31            138076480     100.0%      0.0%      0.0%
+ flops     8 x     8 x    31            145474816     100.0%      0.0%      0.0%
+ flops   912 x    33 x   442            159629184     100.0%      0.0%      0.0%
+ flops    65 x    32 x   456            185902080     100.0%      0.0%      0.0%
+ flops    64 x    31 x   442            315694080     100.0%      0.0%      0.0%
+ flops   898 x    31 x   442            319914296     100.0%      0.0%      0.0%
+ flops   898 x     1 x   456            326771424     100.0%      0.0%      0.0%
+ flops    64 x    32 x    31            327979008     100.0%      0.0%      0.0%
+ flops    64 x    31 x    32            327979008     100.0%      0.0%      0.0%
+ flops   898 x    33 x   456            378366912     100.0%      0.0%      0.0%
+ flops    32 x    32 x   456            418381824     100.0%      0.0%      0.0%
+ flops   912 x    31 x    31            420687360     100.0%      0.0%      0.0%
+ flops    14 x    32 x    32            466092032     100.0%      0.0%      0.0%
+ flops    29 x    32 x    32            486539264     100.0%      0.0%      0.0%
+ flops     2 x     2 x    32            717864960     100.0%      0.0%      0.0%
+ flops    63 x    31 x   456            748077120     100.0%      0.0%      0.0%
+ flops    63 x    32 x   442            748500480     100.0%      0.0%      0.0%
+ flops    63 x    32 x    32            777627648     100.0%      0.0%      0.0%
+ flops   912 x    31 x   442            974705472     100.0%      0.0%      0.0%
+ flops   912 x     1 x   456            995597568     100.0%      0.0%      0.0%
+ flops   898 x    32 x    31            997713920     100.0%      0.0%      0.0%
+ flops   898 x    31 x    32            997713920     100.0%      0.0%      0.0%
+ flops   912 x    33 x   456           1152797184     100.0%      0.0%      0.0%
+ flops     8 x     2 x    32           1402874880     100.0%      0.0%      0.0%
+ flops     2 x     8 x    32           1403934720     100.0%      0.0%      0.0%
+ flops    14 x     1 x    14           1443371440     100.0%      0.0%      0.0%
+ flops    29 x     1 x    14           1514997120     100.0%      0.0%      0.0%
+ flops    14 x     1 x    29           1514997120     100.0%      0.0%      0.0%
+ flops    29 x     1 x    29           1584578560     100.0%      0.0%      0.0%
+ flops     8 x     8 x    32           2252513280     100.0%      0.0%      0.0%
+ flops    64 x    31 x   456           2279854080     100.0%      0.0%      0.0%
+ flops   898 x    31 x   456           2310331296     100.0%      0.0%      0.0%
+ flops    14 x    14 x    31           2451787520     100.0%      0.0%      0.0%
+ flops    29 x    14 x    31           2551433920     100.0%      0.0%      0.0%
+ flops    14 x    29 x    31           2553850432     100.0%      0.0%      0.0%
+ flops    29 x    29 x    31           2711384000     100.0%      0.0%      0.0%
+ flops   912 x    31 x    32           3039805440     100.0%      0.0%      0.0%
+ flops   912 x    32 x    31           3039805440     100.0%      0.0%      0.0%
+ flops    63 x    32 x   456           5405460480     100.0%      0.0%      0.0%
+ flops   898 x    32 x   442           5715590400     100.0%      0.0%      0.0%
+ flops    64 x    32 x   442           5949079552     100.0%      0.0%      0.0%
+ flops    64 x    32 x    32           6966870016     100.0%      0.0%      0.0%
+ flops   912 x    31 x   456           7039049472     100.0%      0.0%      0.0%
+ flops    14 x    31 x    14           8365278824     100.0%      0.0%      0.0%
+ flops    29 x    31 x    14           8780396352     100.0%      0.0%      0.0%
+ flops    14 x    31 x    29           8780396352     100.0%      0.0%      0.0%
+ flops    29 x    31 x    29           9183666176     100.0%      0.0%      0.0%
+ flops   898 x    32 x    32          16625500160     100.0%      0.0%      0.0%
+ flops   912 x    32 x   442          17414092800     100.0%      0.0%      0.0%
+ flops    14 x    14 x    32          37963161600     100.0%      0.0%      0.0%
+ flops    29 x    14 x    32          39506073600     100.0%      0.0%      0.0%
+ flops    14 x    29 x    32          39543490560     100.0%      0.0%      0.0%
+ flops   898 x    32 x   456          41276390400     100.0%      0.0%      0.0%
+ flops    29 x    29 x    32          41982720000     100.0%      0.0%      0.0%
+ flops    64 x    32 x   456          42962583552     100.0%      0.0%      0.0%
+ flops   912 x    32 x    32          50654085120     100.0%      0.0%      0.0%
+ flops   912 x    32 x   456         125759692800     100.0%      0.0%      0.0%
+ flops    14 x    32 x    14         127920362752     100.0%      0.0%      0.0%
+ flops    29 x    32 x    14         134268266496     100.0%      0.0%      0.0%
+ flops    14 x    32 x    29         134268266496     100.0%      0.0%      0.0%
+ flops    29 x    32 x    29         140434997248     100.0%      0.0%      0.0%
+ flops inhomo. stacks                     2457740     100.0%      0.0%      0.0%
+ flops total                         1.102810E+12     100.0%      0.0%      0.0%
+ flops max/rank                     36.270757E+09     100.0%      0.0%      0.0%
+ matmuls inhomo. stacks                      1930     100.0%      0.0%      0.0%
+ matmuls total                           47052440     100.0%      0.0%      0.0%
+ number of processed stacks                374674     100.0%      0.0%      0.0%
+ average stack size                                   125.6       0.0       0.0
+ marketing flops                     1.282409E+12
+ -------------------------------------------------------------------------------
+ # multiplications                           2375
+ max memory usage/rank             492.380160E+06
+ # max total images/rank                        2
+ # max 3D layers                                1
+ # MPI messages exchanged                 1596000
+ MPI messages size (bytes):
+  total size                       339.782468E+09
+  min size                           0.000000E+00
+  max size                           3.326976E+06
+  average size                     212.896281E+03
+ MPI breakdown and total messages size (bytes):
+             size <=      128              919912                    83888
+       128 < size <=     8192              249368               1773906232
+      8192 < size <=    32768               92512               1679401752
+     32768 < size <=   131072              140672              15636307120
+    131072 < size <=  4194304              193536             320693221408
+   4194304 < size <= 16777216                   0                        0
+  16777216 < size                               0                        0
+ -------------------------------------------------------------------------------
+
+ *** WARNING in dbcsr/mm/dbcsr_mm.F:268 :: Using a non-square number of ***
+ *** MPI ranks might lead to poor performance.                          ***
+ *** Used ranks: 32                                                     ***
+ *** Suggested: 36 64                                                   ***
+
+ -------------------------------------------------------------------------------
+ 
+ MEMORY| Estimated peak process memory [MiB]                                 471
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                         MESSAGE PASSING PERFORMANCE                         -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+
+ ROUTINE             CALLS      AVE VOLUME [Bytes]
+ MP_Group              302
+ MP_Bcast             3015                 542217.
+ MP_Allreduce        17818                    377.
+ MP_Sync               399
+ MP_Alltoall         13474                1384400.
+ MP_ISendRecv        11718                  74403.
+ MP_Wait            209128
+ MP_comm_split         185
+ MP_ISend           117550                 119245.
+ MP_IRecv           117118                 120165.
+ MP_Recv                28                 930304.
+ MP_Memory          137210
+ -------------------------------------------------------------------------------
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                           R E F E R E N C E S                               -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ 
+ CP2K version 6.1, the CP2K developers group (2018).
+ CP2K is freely available from https://www.cp2k.org/ .
+
+ Schuett, Ole; Messmer, Peter; Hutter, Juerg; VandeVondele, Joost. 
+ Electronic Structure Calculations on Graphics Processing Units, John Wiley & Sons, Ltd, 173-190 (2016). 
+ GPU-Accelerated Sparse Matrix-Matrix Multiplication for Linear Scaling Density Functional Theory.
+ http://dx.doi.org/10.1002/9781118670712.ch8
+
+
+ Borstnik, U; VandeVondele, J; Weber, V; Hutter, J. 
+ PARALLEL COMPUTING, 40 (5-6), 47-58 (2014). 
+ Sparse matrix multiplication: The distributed block-compressed sparse
+ row library.
+ http://dx.doi.org/10.1016/j.parco.2014.03.012
+
+
+ Hutter, J; Iannuzzi, M; Schiffmann, F; VandeVondele, J. 
+ WILEY INTERDISCIPLINARY REVIEWS-COMPUTATIONAL MOLECULAR SCIENCE, 4 (1), 15-25 (2014). 
+ CP2K: atomistic simulations of condensed matter systems.
+ http://dx.doi.org/10.1002/wcms.1159
+
+
+ Sabatini, R; Gorni, T; de Gironcoli, S. 
+ Phys. Rev. B, 87 (4), 041108(R) (2013). 
+ Nonlocal van der Waals density functional made simple and efficient.
+ http://dx.doi.org/10.1103/PhysRevB.87.041108
+
+
+ Guidon, M; Hutter, J; VandeVondele, J. 
+ JOURNAL OF CHEMICAL THEORY AND COMPUTATION, 6 (8), 2348-2364 (2010). 
+ Auxiliary Density Matrix Methods for Hartree-Fock Exchange Calculations.
+ http://dx.doi.org/10.1021/ct1002225
+
+
+ Guidon, M; Hutter, J; VandeVondele, J. 
+ JOURNAL OF CHEMICAL THEORY AND COMPUTATION, 5 (11), 3010-3021 (2009). 
+ Robust Periodic Hartree-Fock Exchange for Large-Scale Simulations Using
+ Gaussian Basis Sets.
+ http://dx.doi.org/10.1021/ct900494g
+
+
+ Roman-Perez, G; Soler, JM. 
+ Phys. Rev. Lett., 103 (9), 096102 (2009). 
+ Efficient Implementation of a van der Waals Density Functional:
+ Application to Double-Wall Carbon Nanotubes.
+ http://dx.doi.org/10.1103/PhysRevLett.103.096102
+
+
+ Guidon, M; Schiffmann, F; Hutter, J; VandeVondele, J. 
+ JOURNAL OF CHEMICAL PHYSICS, 128 (21), 214104 (2008). 
+ Ab initio molecular dynamics using hybrid density functionals.
+ http://dx.doi.org/10.1063/1.2931945
+
+
+ VandeVondele, J; Hutter, J. 
+ JOURNAL OF CHEMICAL PHYSICS, 127 (11), 114105 (2007). 
+ Gaussian basis sets for accurate calculations on molecular systems in
+ gas and condensed phases.
+ http://dx.doi.org/10.1063/1.2770708
+
+
+ Krack, M. 
+ THEORETICAL CHEMISTRY ACCOUNTS, 114 (1-3), 145-152 (2005). 
+ Pseudopotentials for H to Kr optimized for gradient-corrected
+ exchange-correlation functionals.
+ http://dx.doi.org/10.1007/s00214-005-0655-y
+
+
+ VandeVondele, J; Krack, M; Mohamed, F; Parrinello, M; Chassaing, T;
+ Hutter, J. COMPUTER PHYSICS COMMUNICATIONS, 167 (2), 103-128 (2005). 
+ QUICKSTEP: Fast and accurate density functional calculations using a
+ mixed Gaussian and plane waves approach.
+ http://dx.doi.org/10.1016/j.cpc.2004.12.014
+
+
+ Frigo, M; Johnson, SG. 
+ PROCEEDINGS OF THE IEEE, 93 (2), 216-231 (2005). 
+ The design and implementation of FFTW3.
+ http://dx.doi.org/10.1109/JPROC.2004.840301
+
+
+ Heyd, J; Scuseria, GE. 
+ JOURNAL OF CHEMICAL PHYSICS, 120 (16), 7274-7280 (2004). 
+ Assessment and validation of a screened Coulomb hybrid density
+ functional.
+ http://dx.doi.org/10.1063/1.1668634
+
+
+ VandeVondele, J; Hutter, J. 
+ JOURNAL OF CHEMICAL PHYSICS, 118 (10), 4365-4369 (2003). 
+ An efficient orbital transformation method for electronic structure
+ calculations.
+ http://dx.doi.org/10.1063/1.1543154
+
+
+ Hartwigsen, C; Goedecker, S; Hutter, J. 
+ PHYSICAL REVIEW B, 58 (7), 3641-3662 (1998). 
+ Relativistic separable dual-space Gaussian pseudopotentials from H to Rn.
+ http://dx.doi.org/10.1103/PhysRevB.58.3641
+
+
+ Lippert, G; Hutter, J; Parrinello, M. 
+ MOLECULAR PHYSICS, 92 (3), 477-487 (1997). 
+ A hybrid Gaussian and plane wave density functional scheme.
+ http://dx.doi.org/10.1080/002689797170220
+
+
+ Perdew, JP; Burke, K; Ernzerhof, M. 
+ PHYSICAL REVIEW LETTERS, 77 (18), 3865-3868 (1996). 
+ Generalized gradient approximation made simple.
+ http://dx.doi.org/10.1103/PhysRevLett.77.3865
+
+
+ Goedecker, S; Teter, M; Hutter, J. 
+ PHYSICAL REVIEW B, 54 (3), 1703-1710 (1996). 
+ Separable dual-space Gaussian pseudopotentials.
+ http://dx.doi.org/10.1103/PhysRevB.54.1703
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                T I M I N G                                  -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ SUBROUTINE                       CALLS  ASD         SELF TIME        TOTAL TIME
+                                MAXIMUM       AVERAGE  MAXIMUM  AVERAGE  MAXIMUM
+ CP2K                                 1  1.0    0.083    0.090  770.498  770.499
+ qs_energies                          1  2.0    0.000    0.001  769.391  769.391
+ scf_env_do_scf                       1  3.0    0.000    0.000  516.362  516.362
+ scf_env_do_scf_inner_loop           23  4.0    0.001    0.002  436.207  436.216
+ qs_ks_update_qs_env                 24  5.0    0.000    0.000  381.836  381.838
+ rebuild_ks_matrix                   23  6.0    0.000    0.000  381.757  381.758
+ qs_ks_build_kohn_sham_matrix        23  7.0    0.004    0.004  381.756  381.758
+ dbcsr_multiply_generic            2375  8.5    0.157    0.160  365.083  365.362
+ scf_post_calculation_gpw             1  3.0    0.000    0.000  250.448  250.449
+ make_lumo                            1  4.0    0.000    0.000  249.596  249.597
+ ot_eigensolver                       2  5.0    0.002    0.003  248.997  248.998
+ hfx_ks_matrix                       23  8.0    0.001    0.001  210.219  210.280
+ integrate_four_center               23  9.0    0.126    0.353  210.143  210.201
+ integrate_four_center_main          23 10.0    0.007    0.008  197.772  200.315
+ integrate_four_center_bin         1472 11.0  197.765  200.308  197.765  200.308
+ multiply_cannon                   2375  9.5    0.423    0.437  193.191  193.957
+ mp_deallocate_d                  38799 12.7  180.341  181.100  180.341  181.100
+ ot_mini                            135  6.3    0.001    0.001  172.107  172.112
+ qs_ot_get_derivative                81  7.6    0.001    0.001  154.276  154.289
+ dbcsr_destroy                    33809 10.4    0.123    0.126  143.433  143.657
+ mp_deallocate_i                  30006 12.7  136.111  137.380  136.111  137.380
+ make_m2s                          4750  9.5    0.154    0.158  127.451  128.221
+ qs_vxc_create                       46  8.0    0.003    0.004  118.230  118.261
+ dbcsr_data_release              165339 12.2    0.523    0.598  106.734  106.975
+ qs_scf_new_mos                      23  5.0    0.000    0.000  102.789  102.798
+ qs_scf_loop_do_ot                   23  6.0    0.000    0.000  102.789  102.798
+ xc_rho_set_and_dset_create          46 10.0    0.400    0.424   93.130   99.237
+ qs_ot_get_derivative_diag           65  8.6    0.002    0.002   95.219   95.232
+ ot_scf_mini                         23  7.0    0.001    0.002   94.480   94.485
+ xc_functional_eval                 115 11.0    0.001    0.001   74.560   80.645
+ init_scf_loop                        1  4.0    0.000    0.000   80.142   80.142
+ make_images                       4750 10.5    0.235    0.247   79.329   80.120
+ qs_ot_get_p                        164  6.6    0.001    0.001   75.968   76.277
+ setup_buffer_matrices             4750 10.5    0.094    0.097   69.383   69.451
+ xc_vxc_pw_create                    24  9.0    0.407    0.446   68.505   68.505
+ dbcsr_create_new                 35060 11.2    0.191    0.195   66.765   67.235
+ dbcsr_make_index_exist           35060 12.2    0.095    0.099   65.453   65.917
+ pw_transfer                       2365 10.1    0.147    0.179   47.940   53.748
+ fft_wrap_pw1pw2                   2123 11.1    0.018    0.021   47.459   53.274
+ dbcsr_make_images_dense           4092 10.8    0.076    0.078   47.898   47.967
+ fft_wrap_pw1pw2_400                729 12.3    3.967    4.837   42.019   47.720
+ qs_ot_get_orbitals                 162  6.6    0.001    0.001   46.368   46.393
+ calculate_rho_elec                  94  7.5   20.832   21.143   44.207   44.222
+ xpbe_hole_t_c_lr_lsd_eval           46 12.0   41.640   44.110   41.640   44.110
+ xc_exc_calc                         22  9.0    0.040    0.042   42.055   42.055
+ fft3d_ps                          2123 13.1   18.901   19.630   35.665   41.696
+ qs_ot_p2m_diag                     135  7.5    0.010    0.011   39.381   39.416
+ dbcsr_special_finalize            7125 11.5    0.028    0.029   35.639   36.496
+ buffer_matrices_ensure_size       4750 10.5    0.671    0.691   32.201   32.749
+ xwpbe_lsd_eval                      46 12.0   28.490   32.660   28.490   32.660
+ quick_finalize                    6992 12.6    0.034    0.038   30.915   31.811
+ qs_rho_update_rho                   24  5.0    0.000    0.000   28.459   28.469
+ dbcsr_switch_data_area           18852 12.5    0.024    0.025   28.053   28.231
+ admm_mo_calc_rho_aux                23  8.0    0.000    0.001   26.093   26.131
+ mp_waitall_1                    202858 12.0   24.423   25.191   24.423   25.191
+ qs_ot_get_derivative_taylor         16  8.8    0.001    0.001   21.662   21.666
+ density_rs2pw                       94  8.5    0.006    0.007   21.048   21.419
+ sum_up_and_integrate                12  8.0    0.161    0.171   19.778   19.782
+ integrate_v_rspace                  48  9.0    9.818    9.970   19.613   19.636
+ mp_alltoall_z22v                  2123 15.1   11.662   19.343   11.662   19.343
+ apply_preconditioner_dbcsr          87  8.6    0.000    0.000   18.943   19.026
+ apply_single                        87  9.6    0.000    0.000   18.943   19.026
+ multiply_cannon_metrocomm3       19000 10.5    0.077    0.080   17.467   18.297
+ ot_new_cg_direction                 69  7.3    0.001    0.001   17.730   17.730
+ rs_pw_transfer                     569 10.0    0.006    0.007   16.034   16.249
+ yz_to_x                           1077 13.9    1.810    2.026    9.288   16.016
+ -------------------------------------------------------------------------------
+
+ The number of warnings for this run is : 2
+ 
+ -------------------------------------------------------------------------------
+  **** **** ******  **  PROGRAM ENDED AT                 2024-03-16 17:14:16.861
+ ***** ** ***  *** **   PROGRAM RAN ON                                      tc22
+ **    ****   ******    PROGRAM RAN BY                                  fambrosi
+ ***** **    ** ** **   PROGRAM PROCESS ID                                 14362
+  **** **  *******  **  PROGRAM STOPPED IN          /scratch/fambrosi.55155.tccw
